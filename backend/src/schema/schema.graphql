@@ -1,0 +1,16 @@
+type DailyScore {
+  date: String!
+  score: Int!
+  description: String
+}
+
+type ActivityRanking {
+  activity: String!
+  scores: [DailyScore!]!
+  bestDay: String
+  worstDay: String
+}
+
+type Query {
+  getActivityRankings(city: String!): [ActivityRanking!]!
+}
