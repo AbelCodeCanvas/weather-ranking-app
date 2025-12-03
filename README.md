@@ -8,19 +8,65 @@ Setup Instructions:
 1. Backend:
 
 bash
+# 1. Create and navigate to backend directory
+mkdir weather-ranking-app
+cd weather-ranking-app
+mkdir backend
 cd backend
+
+# 2. Create all the backend files listed above
+# (Copy each file to its respective location)
+
+# 3. Install dependencies
 npm install
-npm run dev  # Starts GraphQL server on http://localhost:4000
-npm test     # Runs TDD tests
+
+# 4. Run tests to verify implementation
+npm test
+
+# 5. Start the development server
+npm run dev
+# Server runs on http://localhost:4000
 
 
 1. Frontend:
 
 bash
-cd frontend
+
+# 1. Navigate to frontend directory (from root)
+cd ../frontend
+
+# 2. Create all the frontend files listed above
+# (Copy each file to its respective location)
+
+# 3. Install dependencies
 npm install
-npm run dev  # Starts React app on http://localhost:3000
-npm test     # Runs component tests
+
+# 4. Start the development server
+npm run dev
+# App runs on http://localhost:3000
+
+1. To run both
+   # Open two terminal windows
+
+# Terminal 1: Backend
+cd backend
+npm run dev
+
+# Terminal 2: Frontend
+cd frontend
+npm run dev
+
+# Visit http://localhost:3000 in your browser
+
+1. Testing:
+   
+# Backend tests
+cd backend
+npm test
+
+# Frontend tests (if implemented)
+cd frontend
+npm test
 
 
 Omissions & Trade-offs Documented
@@ -41,6 +87,8 @@ Omissions & Trade-offs Documented
 · Simplified Scoring: Weather scoring uses simplified formulas
 · No Pagination: Assumes 7-day forecast fits in single response
 · Basic Error Handling: Generic error messages
+.Limited Caching: Basic Apollo Client caching only
+.Simplified Geolocation: Uses Open-Meteo geocoding directly
 · Hardcoded URLs: API endpoints hardcoded
 
 3. How AI Assisted:
@@ -49,6 +97,7 @@ Omissions & Trade-offs Documented
 · Boilerplate Code: Generated test templates and TypeScript interfaces
 · Error Handling Patterns: Suggested try-catch patterns and error types
 · GraphQL Schema Design: Recommended schema structure
+. Simplified Geolocation: Uses Open-Meteo geocoding directly
 · Scoring Algorithms: Helped refine scoring logic with constraints
 · Test Cases: Generated edge case scenarios for testing
 
