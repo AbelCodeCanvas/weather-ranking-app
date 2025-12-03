@@ -16,18 +16,31 @@ const GET_ACTIVITY_RANKINGS = gql`
   }
 `;
 
-export const useActivityRankings = (city: string) => {
-  const { loading, error, data } = useQuery<{ getActivityRankings: ActivityRanking[] }>(
+interface UseActivityRankingsResult {
+  loading: boolean;
+  error: any;
+  data: ActivityRanking[];
+  refetch: (city: string) => void;
+}
+
+export const useActivityRankings = (city: string): UseActivityRankingsResult => {
+  const { loading, error, data, refetch: apolloRefetch } = useQuery<{ getActivityRankings: ActivityRanking[] }>(
     GET_ACTIVITY_RANKINGS,
     {
       variables: { city },
-      skip: !city
+      skip: !city,
+      fetchPolicy: 'cache-and-network',
     }
   );
 
+  const refetch = (newCity: string) => {
+    apolloRefetch({ city: newCity });
+  };
+
   return {
     loading,
-    error,
-    data: data?.getActivityRankings || []
+    error: error ? new Error(error.message || 'Failed to fetch rankings') : undefined,
+    data: data?.getActivityRankings || [],
+    refetch
   };
 };
